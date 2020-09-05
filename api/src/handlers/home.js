@@ -1,5 +1,4 @@
-const { response } = require('express');
-
+const { v1 } = require('uuid');
 const { getAll, create } = require('../models/posts');
 
 exports.index = (request, response) => {
@@ -8,8 +7,7 @@ exports.index = (request, response) => {
 }
 
 exports.doPost = (request, response) => {
-  const { title, description } = request.body;
-  const id = 3;
-  const post = create({ id, title, description })
+  const { title, content } = request.body;
+  const post = create({ id: v1(), title, content })
   return response.json(post);
 }
